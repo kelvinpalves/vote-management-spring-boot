@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApivotacaoApplication {
+public class VotacaoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApivotacaoApplication.class, args);
+		SpringApplication.run(VotacaoApplication.class, args);
 	}
 
 }
