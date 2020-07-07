@@ -5,6 +5,7 @@
  */
 package br.com.kelvin.votacao.api.votacao;
 
+import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
@@ -17,7 +18,13 @@ import lombok.Data;
 @Builder
 public class ReceberVotoDto {
     private Integer id;
+    
+    @NotNull(message = "Uma pauta deve ser informada")
     private Integer pauta;
+    
+    @NotNull(message = "Um membro deve ser informado")
     private Integer membro;
+    
+    @NotNull(message = "A opção de voto deve ser informada")
     private Boolean voto;
 }

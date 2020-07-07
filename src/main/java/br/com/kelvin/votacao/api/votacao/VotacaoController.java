@@ -5,7 +5,9 @@
  */
 package br.com.kelvin.votacao.api.votacao;
 
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,12 +26,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class VotacaoController {
     private final VotacaoService service;
     
+    @Autowired
     public VotacaoController(final VotacaoService service) {
         this.service = service;
     }
     
     @PostMapping
-    VotacaoDto votar(@RequestBody final ReceberVotoDto dto) {
+    VotacaoDto votar(@Valid @RequestBody ReceberVotoDto dto) {
         log.info("Tentativa de voto para a pauta: {}", dto.getPauta());
         return this.service.adicionarVoto(dto);
     }

@@ -11,7 +11,6 @@ package br.com.kelvin.votacao.api.pauta;
  */
 public class PautaConversor {
     
-    
     public static PautaDto conversorEntidadeDto(Pauta entidade) {
         return PautaDto.builder()
                 .id(entidade.getId())

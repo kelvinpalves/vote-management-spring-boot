@@ -7,7 +7,7 @@ package br.com.kelvin.votacao.api.sessao;
 
 import br.com.kelvin.votacao.api.pauta.PautaDto;
 import br.com.kelvin.votacao.api.pauta.PautaService;
-import br.com.kelvin.votacao.config.exception.NotFoundException;
+import br.com.kelvin.votacao.config.exception.RegistroNaoEncontradoException;
 import br.com.kelvin.votacao.config.exception.SessaoAbertaExistenteException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -74,7 +74,7 @@ public class SessaoServiceImpl implements SessaoService {
         Optional<Sessao> sessaoOptional = repository.findBySessaoAberta(pauta, LocalDateTime.now());
         
         if (!sessaoOptional.isPresent()) {
-            throw new NotFoundException("Não foi encontrado sessão aberta para pauta: " + pauta);
+            throw new RegistroNaoEncontradoException("Não foi encontrado sessão aberta para pauta: " + pauta);
         }
         
         return SessaoConversor.conversorEntidadeDto(sessaoOptional.get());
@@ -85,7 +85,7 @@ public class SessaoServiceImpl implements SessaoService {
         Optional<Sessao> sessaoOptional = repository.findById(sessao);
         
         if (!sessaoOptional.isPresent()) {
-            throw new NotFoundException("Não foi encontrado sessão: " + sessao);
+            throw new RegistroNaoEncontradoException("Não foi encontrado sessão: " + sessao);
         }
         
         return SessaoConversor.conversorEntidadeDto(sessaoOptional.get());

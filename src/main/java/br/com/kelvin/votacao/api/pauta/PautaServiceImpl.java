@@ -5,7 +5,7 @@
  */
 package br.com.kelvin.votacao.api.pauta;
 
-import br.com.kelvin.votacao.config.exception.NotFoundException;
+import br.com.kelvin.votacao.config.exception.RegistroNaoEncontradoException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +37,7 @@ public class PautaServiceImpl implements PautaService {
         Optional<Pauta> pautaOptional = repository.findById(id);
         
         if (!pautaOptional.isPresent()) {
-            throw new NotFoundException("A pauta " +id + " não foi encontrada.");
+            throw new RegistroNaoEncontradoException("A pauta " +id + " não foi encontrada.");
         }
         
         return PautaConversor.conversorEntidadeDto(pautaOptional.get());

@@ -5,7 +5,9 @@
  */
 package br.com.kelvin.votacao.api.sessao;
 
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +25,13 @@ public class SessaoController {
     
     private final SessaoService service;
     
+    @Autowired
     public SessaoController(final SessaoService service) {
         this.service = service;
     }
     
     @PostMapping
-    SessaoDto abrirSessao(@RequestBody final AberturaSessaoDto dto) {
+    SessaoDto abrirSessao(@Valid @RequestBody AberturaSessaoDto dto) {
         log.info("Tentativa de abertura de sessão para a pauta: {}", dto.getPauta());
         return this.service.abrirSessao(dto);
     }

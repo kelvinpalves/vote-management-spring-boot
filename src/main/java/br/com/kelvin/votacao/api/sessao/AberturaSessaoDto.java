@@ -5,6 +5,7 @@
  */
 package br.com.kelvin.votacao.api.sessao;
 
+import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,6 +17,7 @@ import lombok.Data;
 @Data
 @Builder
 public class AberturaSessaoDto {
+    @NotNull( message = "Uma pauta deve ser informada")
     private Integer pauta;
     private Integer duracao;
 }
