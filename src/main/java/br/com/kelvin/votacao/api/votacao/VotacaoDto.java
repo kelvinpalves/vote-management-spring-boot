@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.kelvin.votacao.api.sessao;
+package br.com.kelvin.votacao.api.votacao;
 
-import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,13 +13,11 @@ import lombok.Data;
  * @author kelvin
  */
 
-@Data
 @Builder
-public class SessaoDto {
-    
+@Data
+public class VotacaoDto {
     private Integer id;
-    private Integer pauta;
-    private LocalDateTime inicio;
-    private LocalDateTime fim;
-    
+    private Integer sessao;
+    private Integer membro;
+    private Boolean voto;
 }

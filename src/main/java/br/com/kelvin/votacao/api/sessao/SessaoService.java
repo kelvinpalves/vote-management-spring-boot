@@ -14,4 +14,8 @@ public interface SessaoService {
     
     public SessaoDto abrirSessao(AberturaSessaoDto dto);
     
+    public SessaoDto buscarSessaoAberta(Integer pauta);
+    
+    public SessaoDto buscarSessao(Integer sessao);
+    
 }

@@ -17,7 +17,6 @@ public class SessaoConversor {
                 .pauta(entidade.getIdPauta())
                 .inicio(entidade.getInicio())
                 .fim(entidade.getFim())
-                .aberta(entidade.getAberta())
                 .build();
     }
             

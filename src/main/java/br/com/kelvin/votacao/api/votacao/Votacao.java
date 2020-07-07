@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.kelvin.votacao.api.sessao;
+package br.com.kelvin.votacao.api.votacao;
 
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,23 +21,23 @@ import lombok.NoArgsConstructor;
  */
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
-public class Sessao {
+@Table(name = "votacao")
+public class Votacao {
     
     @Id
     @GeneratedValue
     private Integer id;
     
-    @Column(name = "id_pauta", nullable = false)
-    private Integer idPauta;
+    @Column(name = "id_sessao", nullable = false)
+    private Integer idSessao;
     
-    @Column(name = "inicio", nullable = false)
-    private LocalDateTime inicio;
+    @Column(name = "id_membro", nullable = false)
+    private Integer idMembro;
     
-    @Column(name = "fim", nullable = false)
-    private LocalDateTime fim;
-    
+    @Column(name = "voto", nullable = false)
+    private Boolean voto;
 }

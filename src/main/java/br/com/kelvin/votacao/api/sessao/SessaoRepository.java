@@ -5,7 +5,13 @@
  */
 package br.com.kelvin.votacao.api.sessao;
 
+import br.com.kelvin.votacao.api.votacao.Votacao;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +20,11 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface SessaoRepository extends JpaRepository<Sessao, Integer>{
+public interface SessaoRepository extends JpaRepository<Sessao, Integer> {
+ 
+    Optional<Sessao> findByIdPauta(Integer id);
+    
+    @Query("select s from Sessao s where s.idPauta = :pauta and s.fim > :agora")
+    Optional<Sessao> findBySessaoAberta(@Param("pauta") Integer pauta, @Param("agora") LocalDateTime agora);
     
 }
