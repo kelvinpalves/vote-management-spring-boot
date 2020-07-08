@@ -6,8 +6,10 @@
 package br.com.kelvin.votacao.api.pauta;
 
 import javax.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -15,10 +17,12 @@ import lombok.Data;
  */
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class PautaDto {
-    private final Integer id;
+    private Integer id;
     
     @NotBlank(message = "Uma pauta deve ser informada")
-    private final String descricao;
+    private String descricao;
 }

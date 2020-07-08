@@ -10,7 +10,6 @@ import br.com.kelvin.votacao.api.pauta.PautaService;
 import br.com.kelvin.votacao.config.exception.RegistroNaoEncontradoException;
 import br.com.kelvin.votacao.config.exception.SessaoAbertaExistenteException;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;

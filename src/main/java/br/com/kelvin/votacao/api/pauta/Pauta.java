@@ -34,7 +34,7 @@ public class Pauta {
     @Column(name = "id")
     private Integer id;
     
-    @Column(name = "descricao")
+    @Column(name = "descricao", nullable = false)
     private String descricao;
     
 }

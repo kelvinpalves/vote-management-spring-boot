@@ -35,9 +35,9 @@ public class VotacaoServiceImpl implements VotacaoService {
     private final PautaService pautaService;
     
     @Autowired
-    public VotacaoServiceImpl(final VotacaoRepository repository, 
-            final SessaoService sessaoService,
-            final PautaService pautaService) {
+    public VotacaoServiceImpl(VotacaoRepository repository, 
+            SessaoService sessaoService,
+            PautaService pautaService) {
         this.repository = repository;
         this.sessaoService = sessaoService;
         this.pautaService = pautaService;
