@@ -38,7 +38,7 @@ public class VotacaoController {
     }
     
     @GetMapping("/resultado/sessao/{sessao}")
-    ResultadoVotacao buscarResultado(@PathVariable("sessao") Integer sessao) {
+    ResultadoVotacaoDto buscarResultado(@PathVariable("sessao") Integer sessao) {
         log.info("Buscar resultado da votação para sessão: {}", sessao);
         return this.service.buscarResultadoVotacao(sessao);
     }

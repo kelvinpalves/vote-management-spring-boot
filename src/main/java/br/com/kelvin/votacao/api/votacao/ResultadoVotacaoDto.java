@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ResultadoVotacao {
+public class ResultadoVotacaoDto {
     private String pauta;
     private Integer totalSim;
     private Integer totalNao;

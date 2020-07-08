@@ -22,14 +22,14 @@ public class VotacaoConversor {
                 .build();
     }
     
-    public static ResultadoVotacao conversorListaVotosParaResultadoVotacao(List<Votacao> lista, String pauta) {
+    public static ResultadoVotacaoDto conversorListaVotosParaResultadoVotacao(List<Votacao> lista, String pauta) {
         Integer sim = 0;
         Integer nao = 0;
         
         sim = lista.stream().filter((votacao) -> (votacao.getVoto().equals(Boolean.TRUE))).map((_item) -> 1).reduce(sim, Integer::sum);
         nao = lista.stream().filter((votacao) -> (votacao.getVoto().equals(Boolean.FALSE))).map((_item) -> 1).reduce(nao, Integer::sum);
         
-        return ResultadoVotacao.builder()
+        return ResultadoVotacaoDto.builder()
                 .pauta(pauta)
                 .totalSim(sim)
                 .totalNao(nao)

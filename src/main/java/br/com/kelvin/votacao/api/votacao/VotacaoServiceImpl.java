@@ -62,7 +62,7 @@ public class VotacaoServiceImpl implements VotacaoService {
     }
 
     @Override
-    public ResultadoVotacao buscarResultadoVotacao(Integer sessao) {
+    public ResultadoVotacaoDto buscarResultadoVotacao(Integer sessao) {
         SessaoDto sessaoDto = sessaoService.buscarSessao(sessao);
         
         if (LocalDateTime.now().isBefore(sessaoDto.getFim())) {

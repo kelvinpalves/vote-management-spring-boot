@@ -13,6 +13,6 @@ public interface VotacaoService {
     
     public VotacaoDto adicionarVoto(ReceberVotoDto dto);
     
-    public ResultadoVotacao buscarResultadoVotacao(Integer sessao);
+    public ResultadoVotacaoDto buscarResultadoVotacao(Integer sessao);
     
 }
