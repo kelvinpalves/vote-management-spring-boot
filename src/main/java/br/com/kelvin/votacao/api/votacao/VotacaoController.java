@@ -5,6 +5,7 @@
  */
 package br.com.kelvin.votacao.api.votacao;
 
+import io.swagger.v3.oas.annotations.Operation;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,14 @@ public class VotacaoController {
         this.service = service;
     }
     
+    @Operation ( summary = "Serviço para o associado votar em determinada pauta.")
     @PostMapping
     VotacaoDto votar(@Valid @RequestBody ReceberVotoDto dto) {
         log.info("Tentativa de voto para a pauta: {}", dto.getPauta());
         return this.service.adicionarVoto(dto);
     }
     
+    @Operation ( summary = "Serviço para exibir o resultado de votação de uma sessão.")
     @GetMapping("/resultado/sessao/{sessao}")
     ResultadoVotacaoDto buscarResultado(@PathVariable("sessao") Integer sessao) {
         log.info("Buscar resultado da votação para sessão: {}", sessao);
