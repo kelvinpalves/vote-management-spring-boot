@@ -38,3 +38,12 @@ Para documentar as API's foi utilizado o Swagger, para acessar a interface, util
 [Documentação das API's](http://localhost:8080/swagger.html)
 
 ### Exemplos:
+
+[Exemplo de criação de pauta](https://github.com/kelvinpalves/votacao/blob/master/src/main/resources/exemplos/criar-pauta.sh)
+
+[Exemplo de criação de sessão para pauta 1](https://github.com/kelvinpalves/votacao/blob/master/src/main/resources/exemplos/criar-sessao.sh)
+
+[Exemplo de tentativa de voto para sessão 1](https://github.com/kelvinpalves/votacao/blob/master/src/main/resources/exemplos/votar.sh)
+
+[Exemplo de busca pelo resultado da votação](https://github.com/kelvinpalves/votacao/blob/master/src/main/resources/exemplos/resultado-votacao.sh)
+
