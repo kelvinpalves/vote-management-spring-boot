@@ -13,6 +13,7 @@ import br.com.kelvin.votacao.api.votacao.ResultadoVotacaoDto;
 import br.com.kelvin.votacao.api.votacao.Votacao;
 import br.com.kelvin.votacao.api.votacao.VotacaoRepository;
 import br.com.kelvin.votacao.api.votacao.VotacaoServiceImpl;
+import br.com.kelvin.votacao.cliente.ValidarAssociadoRestClient;
 import br.com.kelvin.votacao.config.exception.SessaoInvalidaException;
 import br.com.kelvin.votacao.config.exception.VotoNegadoException;
 import java.time.LocalDateTime;
@@ -42,6 +43,9 @@ public class VotacaoServiceImplTest {
     @Mock
     PautaService pautaService;
     
+    @Mock 
+    ValidarAssociadoRestClient validarAssociadoRestClient;
+    
     VotacaoServiceImpl votacaoServiceImpl;
     
     ReceberVotoDto receberVotoDto;
@@ -50,12 +54,12 @@ public class VotacaoServiceImplTest {
     void beforeAll() {
         receberVotoDto = ReceberVotoDto.builder()
                 .id(1)
-                .membro(1)
+                .cpfAssociado("76462400013")
                 .pauta(1)
                 .voto(Boolean.TRUE)
                 .build();
         
-        votacaoServiceImpl = new VotacaoServiceImpl(repository, sessaoService, pautaService);
+        votacaoServiceImpl = new VotacaoServiceImpl(repository, sessaoService, pautaService, validarAssociadoRestClient);
     }
     
     @Test
@@ -63,7 +67,7 @@ public class VotacaoServiceImplTest {
         when(sessaoService.buscarSessaoAberta(any(Integer.class)))
                 .thenReturn(SessaoDto.builder().id(1).build());
         
-        when(repository.findByIdSessaoAndIdMembro(any(Integer.class), any(Integer.class)))
+        when(repository.findByIdSessaoAndCpfAssociado(any(Integer.class), any(String.class)))
                 .thenReturn(Optional.of(Votacao.builder().id(1).build()));
         
         assertThrows(VotoNegadoException.class, 

@@ -35,8 +35,8 @@ public class Votacao {
     @Column(name = "id_sessao", nullable = false)
     private Integer idSessao;
     
-    @Column(name = "id_membro", nullable = false)
-    private Integer idMembro;
+    @Column(name = "cpf_associado", nullable = false)
+    private String cpfAssociado;
     
     @Column(name = "voto", nullable = false)
     private Boolean voto;

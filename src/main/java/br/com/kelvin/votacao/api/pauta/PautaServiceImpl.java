@@ -9,6 +9,7 @@ import br.com.kelvin.votacao.config.exception.RegistroNaoEncontradoException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import br.com.kelvin.votacao.cliente.ValidarAssociadoRestClient;
 
 /**
  *
@@ -20,9 +21,12 @@ public class PautaServiceImpl implements PautaService {
     
     private final PautaRepository repository;
     
+    private final ValidarAssociadoRestClient validarAssociadoCliente;
+    
     @Autowired
-    public PautaServiceImpl(final PautaRepository pautaRepository) {
+    public PautaServiceImpl(final PautaRepository pautaRepository, final ValidarAssociadoRestClient validarAssociadoCliente) {
         this.repository = pautaRepository;
+        this.validarAssociadoCliente = validarAssociadoCliente;
     }
   
     @Override

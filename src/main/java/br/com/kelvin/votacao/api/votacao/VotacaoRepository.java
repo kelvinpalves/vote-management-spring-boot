@@ -8,7 +8,6 @@ package br.com.kelvin.votacao.api.votacao;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VotacaoRepository extends JpaRepository<Votacao, Integer>{
     
-    Optional<Votacao> findByIdSessaoAndIdMembro(Integer sessao, Integer membro);
+    Optional<Votacao> findByIdSessaoAndCpfAssociado(Integer sessao, String membro);
     
     List<Votacao> findByIdSessao(Integer sessao);
     

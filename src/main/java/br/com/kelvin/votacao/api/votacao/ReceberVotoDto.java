@@ -23,7 +23,7 @@ public class ReceberVotoDto {
     private Integer pauta;
     
     @NotNull(message = "Um membro deve ser informado")
-    private Integer membro;
+    private String cpfAssociado;
     
     @NotNull(message = "A opção de voto deve ser informada")
     private Boolean voto;

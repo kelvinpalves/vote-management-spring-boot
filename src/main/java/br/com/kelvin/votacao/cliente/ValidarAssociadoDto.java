@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.kelvin.votacao.api.votacao;
+package br.com.kelvin.votacao.cliente;
 
 import lombok.Builder;
 import lombok.Data;
@@ -15,9 +15,6 @@ import lombok.Data;
 
 @Builder
 @Data
-public class VotacaoDto {
-    private Integer id;
-    private Integer sessao;
-    private String cpfAssociado;
-    private Boolean voto;
+public class ValidarAssociadoDto {
+    private String status;
 }

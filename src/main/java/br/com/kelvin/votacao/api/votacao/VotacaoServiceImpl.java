@@ -18,6 +18,8 @@ import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import br.com.kelvin.votacao.cliente.ValidarAssociadoRestClient;
+import br.com.kelvin.votacao.config.exception.CpfInvalidoException;
 
 /**
  *
@@ -34,31 +36,48 @@ public class VotacaoServiceImpl implements VotacaoService {
    
     private final PautaService pautaService;
     
+    private final ValidarAssociadoRestClient validarAssociadoRestClient;
+    
     @Autowired
     public VotacaoServiceImpl(VotacaoRepository repository, 
             SessaoService sessaoService,
-            PautaService pautaService) {
+            PautaService pautaService,
+            ValidarAssociadoRestClient rest) {
         this.repository = repository;
         this.sessaoService = sessaoService;
         this.pautaService = pautaService;
+        this.validarAssociadoRestClient = rest;
     }
     
     @Override
     public VotacaoDto adicionarVoto(ReceberVotoDto dto) {
+        validarAssociado(dto.getCpfAssociado());
+        
         SessaoDto sessaoDto = this.sessaoService.buscarSessaoAberta(dto.getPauta());
         
-        log.info("Votando: membro: {}, voto: {}, pauta: {}.", dto.getMembro(),
+        log.info("Votando: membro: {}, voto: {}, pauta: {}.", dto.getCpfAssociado(),
                 dto.getVoto(), sessaoDto.getPauta());
         
-        Optional<Votacao> votacaoOptional = repository.findByIdSessaoAndIdMembro(sessaoDto.getId(), dto.getMembro());
+        Optional<Votacao> votacaoOptional = repository.findByIdSessaoAndCpfAssociado(sessaoDto.getId(), dto.getCpfAssociado());
         
         if (votacaoOptional.isPresent()) {
-            log.error("Voto negado! membro {} já votou na pauta {}!");
-            throw new VotoNegadoException("Voto negado! membro " + dto.getMembro()  +" já votou na pauta " + dto.getPauta() + "!");
+            log.error("Voto negado! membro {} já votou na pauta {}!", dto.getCpfAssociado(), dto.getPauta());
+            throw new VotoNegadoException("Voto negado! membro " + dto.getCpfAssociado() +" já votou na pauta " + dto.getPauta() + "!");
         }
         
         Votacao votacao = repository.save(VotacaoConversor.conversorDtoEntidade(dto, sessaoDto));
         return VotacaoConversor.conversorEntidadeDto(votacao);
+    }
+    
+    private void validarAssociado(String cpf) {
+        try {
+            if (!validarAssociadoRestClient.validarAssociado(cpf)) {
+                throw new VotoNegadoException("O associado " + cpf + " não possui permissão de voto para pauta.");
+            }
+        } catch (CpfInvalidoException ex) {
+            log.error(ex.getMessage());
+            throw ex;
+        }
     }
 
     @Override

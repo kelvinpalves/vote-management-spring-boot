@@ -16,7 +16,7 @@ public class VotacaoConversor {
     public static VotacaoDto conversorEntidadeDto(Votacao entidade) {
         return VotacaoDto.builder()
                 .id(entidade.getId())
-                .membro(entidade.getIdMembro())
+                .cpfAssociado(entidade.getCpfAssociado())
                 .sessao(entidade.getIdSessao())
                 .voto(entidade.getVoto())
                 .build();
@@ -38,7 +38,7 @@ public class VotacaoConversor {
     
     public static Votacao conversorDtoEntidade(ReceberVotoDto dto, SessaoDto sessaoDto) {
         return Votacao.builder()
-                .idMembro(dto.getMembro())
+                .cpfAssociado(dto.getCpfAssociado())
                 .idSessao(sessaoDto.getId())
                 .voto(dto.getVoto())
                 .build();
