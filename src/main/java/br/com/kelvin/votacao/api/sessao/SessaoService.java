@@ -5,6 +5,8 @@
  */
 package br.com.kelvin.votacao.api.sessao;
 
+import java.util.List;
+
 /**
  *
  * @author kelvin

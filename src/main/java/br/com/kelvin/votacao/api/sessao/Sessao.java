@@ -40,4 +40,8 @@ public class Sessao {
     @Column(name = "fim", nullable = false)
     private LocalDateTime fim;
     
+    @Builder.Default
+    @Column
+    private Boolean mensagemEnviada = Boolean.FALSE;
+    
 }
