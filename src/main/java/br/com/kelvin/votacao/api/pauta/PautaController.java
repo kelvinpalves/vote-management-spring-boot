@@ -5,6 +5,7 @@
  */
 package br.com.kelvin.votacao.api.pauta;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-
 @RequestMapping("/api/v1/pauta")
+@Tag (name = "Pauta", description = "Serviços para gerenciamento de pautas")
 public class PautaController {
 
     private final PautaService service;
@@ -31,7 +32,7 @@ public class PautaController {
         this.service = pautaService;
     }
 
-    @Operation ( summary = "Serviço para criar uma pauta.")
+    @Operation ( summary = "Criação de Pauta")
     @PostMapping
     PautaDto criarPauta(@Valid @RequestBody PautaDto pautaDto) {
         log.info("Criando pauta: {}", pautaDto.getDescricao());

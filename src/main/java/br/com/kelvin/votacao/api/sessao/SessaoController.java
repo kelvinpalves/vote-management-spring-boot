@@ -6,6 +6,7 @@
 package br.com.kelvin.votacao.api.sessao;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/sessao")
+@Tag (name = "Sessão", description = "Serviços para gerenciamento de sessões de votação")
 public class SessaoController {
     
     private final SessaoService service;
@@ -31,7 +33,7 @@ public class SessaoController {
         this.service = service;
     }
     
-    @Operation ( summary = "Serviço abrir sessão de votação para uma pauta.")
+    @Operation ( summary = "Criar sessão para determinada pauta.")
     @PostMapping
     SessaoDto abrirSessao(@Valid @RequestBody AberturaSessaoDto dto) {
         log.info("Tentativa de abertura de sessão para a pauta: {}", dto.getPauta());

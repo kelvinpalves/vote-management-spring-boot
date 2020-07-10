@@ -6,6 +6,7 @@
 package br.com.kelvin.votacao.api.votacao;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/votacao")
+@Tag (name = "Votação", description = "Serviços para gerenciar a votação das pautas.")
 public class VotacaoController {
     private final VotacaoService service;
     
@@ -32,14 +34,14 @@ public class VotacaoController {
         this.service = service;
     }
     
-    @Operation ( summary = "Serviço para o associado votar em determinada pauta.")
+    @Operation ( summary = "Votar em determinada pauta.")
     @PostMapping
     VotacaoDto votar(@Valid @RequestBody ReceberVotoDto dto) {
         log.info("Tentativa de voto para a pauta: {}", dto.getPauta());
         return this.service.adicionarVoto(dto);
     }
     
-    @Operation ( summary = "Serviço para exibir o resultado de votação de uma sessão.")
+    @Operation ( summary = "Exibir resultado da votação de determinada sessão.")
     @GetMapping("/resultado/sessao/{sessao}")
     ResultadoVotacaoDto buscarResultado(@PathVariable("sessao") Integer sessao) {
         log.info("Buscar resultado da votação para sessão: {}", sessao);
