@@ -27,8 +27,14 @@ GRANT ALL PRIVILEGES ON DATABASE "votacao" TO admin;
 
 `mvn spring-boot:run`
 
+## Executar os testes unitários
+
+`mvn test`
+
 ## Documentação das API's
 
 Para documentar as API's foi utilizado o Swagger, para acessar a interface, utilize o link abaixo:
 
 [Documentação das API's](http://localhost:8080/swagger.html)
+
+### Exemplos:

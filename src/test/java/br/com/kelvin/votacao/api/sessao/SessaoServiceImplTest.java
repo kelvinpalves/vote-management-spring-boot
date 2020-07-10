@@ -43,7 +43,7 @@ public class SessaoServiceImplTest {
     @BeforeEach
     void beforeAll() {
         localDateTime = LocalDateTime.of(2020, 5, 10, 10, 10, 15);
-        sessao = new Sessao(1, 1, localDateTime, localDateTime.plusMinutes(1), Boolean.FALSE);
+        sessao = new Sessao(1, 1, localDateTime, localDateTime.plusMinutes(1));
         
         aberturaSessaoDto = AberturaSessaoDto.builder()
                 .pauta(1)
